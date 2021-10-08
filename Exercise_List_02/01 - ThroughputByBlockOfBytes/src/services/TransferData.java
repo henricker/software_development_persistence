@@ -36,9 +36,12 @@ public class TransferData {
 
       int read = is.read(buffer);
       while(read != -1) {
-        System.out.println("Buffer readed: " + read);
         os.write(buffer);
+        System.out.println("Buffer transfered: " + read);
         read = is.read(buffer);
       }
+
+      is.close();
+      os.close();
   }
 }

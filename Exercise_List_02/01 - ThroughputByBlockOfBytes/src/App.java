@@ -1,3 +1,6 @@
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 import services.TransferData;
 
@@ -19,7 +22,13 @@ public class App {
             td.transferFileData();
             Long end = System.currentTimeMillis();
 
-            System.out.println("Process thoughput finish in " + (end - begin) + " ms");
+            Path pathDestiny = Paths.get("static/" + filenameOrigin);
+            Long bytesDestiny = Files.size(pathDestiny);
+
+            System.out.println("\nTransfer data to destiny file finish with success!");
+            System.out.println("total time: " + (end - begin) + " ms");
+            System.out.println("total size transferred: " + bytesDestiny + " bytes");
+            System.out.println("throughput: " + bytesDestiny / (end - begin) + " bytes/ms");
         }
 
         catch(Exception err) {
