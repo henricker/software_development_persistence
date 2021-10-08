@@ -1,5 +1,7 @@
 package services;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -19,12 +21,12 @@ public class TransferData {
   }
 
   private InputStream getInputStream() throws IOException {
-    InputStream is = new FileInputStream("static/" + this.filenameOrigin);
+    InputStream is = new BufferedInputStream(new FileInputStream("static/" + this.filenameOrigin), this.sizeOfBytesBlock); 
     return is;
   }
 
   private OutputStream getOutputtream() throws IOException {
-    OutputStream os = new FileOutputStream("static/" + this.filenameDestiny);
+    OutputStream os = new BufferedOutputStream(new FileOutputStream("static/" + this.filenameDestiny), this.sizeOfBytesBlock);
     return os;
   }
 
