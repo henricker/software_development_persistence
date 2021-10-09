@@ -1,0 +1,31 @@
+-- Time between each type of compression --
+
+zip:
+
+real	0m13,420s
+user	0m13,247s
+sys	0m0,124s
+
+gzip:
+
+real	0m11,810s
+user	0m11,716s
+sys	0m0,088s
+
+bzip2:
+
+real	0m17,056s
+user	0m16,809s
+sys	0m0,144s
+
+7zip:
+
+real	1m38,461s
+user	3m57,986s
+sys	0m1,564s
+
+rar:
+
+real	0m32,957s
+user	1m43,964s
+sys	0m0,531s
