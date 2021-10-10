@@ -16,9 +16,7 @@
 
     
    - Decidi deixar a aplicação mais genérica onde você passa o nome do arquivo de origem, destino e o tamanho de blocos de bytes a serem lidos.
-
-   - Deixei um arquivo "city.jpg" na pasta static do projeto para testarmos a taxa de transferência e o tempo em ms durante a cópia dos dados.
-
+   - Adicione um um arquivo na pasta static do projeto para testarmos a taxa de transferência e o tempo em ms durante a cópia dos dados.
    - Para rodar a aplicação basta dar "run" no arquivo App.java, ele abrirá o console e então digite os seguintes dados na mesma linha:
     
     ```
@@ -39,11 +37,12 @@
 
 
   ### Resultados
-    
   
+  - Realizei os testes com uma imagem com alta qualidade e resolução com um total de 17878139 bytes.
+
   - Foi constatado que quando aumentamos o valor do tamanho dos blocos de bytes o tempo de transferência tende a diminuir, ou seja o tamanho dos blocos é inversamente proporcional ao tempo gasto de leitura.
 
-  - Foi criado uma tabela onde é feito uma cópia do arquivo "city.jpg" com diferentes tamanhos de bloco de bytes.
+  - Foi criado uma tabela onde é feito uma cópia do arquivo que adicionei com diferentes tamanhos de bloco de bytes.
 
     <table>
       <thead>

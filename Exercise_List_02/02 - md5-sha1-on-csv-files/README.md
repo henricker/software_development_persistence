@@ -44,37 +44,43 @@
 
   - Ao abrir o arquivo `solve-compression.txt` verá os seguintes resultados:
     ```
-      -- Time between each type of compression --
+    -- Time and size between each type of compression --
 
-      zip:
+    zip:
 
-      real    0m13,420s
-      user    0m13,247s
-      sys     0m0,124s
+    real	0m13,259s
+    user	0m13,141s
+    sys	0m0,100s
+    -rw-rw-r-- 1 henricker henricker 79M out 10 19:09 data.zip
 
-      gzip:
+    gzip:
 
-      real    0m11,810s
-      user    0m11,716s
-      sys     0m0,088s
+    real	0m11,791s
+    user	0m11,718s
+    sys	0m0,052s
+    -rw-rw-r-- 1 henricker henricker 79M out 10 19:10 data.gz
 
-      bzip2:
+    bzip2:
 
-      real    0m17,056s
-      user    0m16,809s
-      sys     0m0,144s
+    real	0m16,132s
+    user	0m16,001s
+    sys	0m0,112s
+    -rw-rw-r-- 1 henricker henricker 57M out  8 22:24 data.csv.bz2
 
-      7zip:
+    7zip:
 
-      real    1m38,461s
-      user    3m57,986s
-      sys     0m1,564s
+    real	1m30,151s
+    user	3m52,404s
+    sys	0m1,358s
+    -rw-rw-r-- 1 henricker henricker 51M out 10 19:12 data.7z
 
-      rar:
+    rar:
 
-      real    0m32,957s
-      user    1m43,964s
-      sys     0m0,531s  
+    real	0m31,126s
+    user	1m42,275s
+    sys	0m0,451s
+    -rw-rw-r-- 1 henricker henricker 60M out 10 19:12 data.rar
+
     ```
   - Com o resultado acima podemos fazer uma tabela para melhor visualização dos dados
 
@@ -82,33 +88,39 @@
       <thead>
         <tr>
           <th>type compression</th>
-          <th>total time (s) </th>
+          <th>time (s) </th>
+           <th>size (M) </th>
         <tr>
       </thead>
       <tbody>
         <tr>
           <td style="text-align: center;">zip</td>
-          <td style="text-align: center;">13.420</td>
+          <td style="text-align: center;">13.259</td>
+          <td style="text-align: center;">79</td>
         <tr>
         <tr>
           <td style="text-align: center;">gzip</td>
-          <td style="text-align: center;">11.810</td>
+          <td style="text-align: center;">11.791</td>
+          <td style="text-align: center;">79</td>
         <tr>
         <tr>
           <td style="text-align: center;">bzip2</td>
-          <td style="text-align: center;">17.056</td>
+          <td style="text-align: center;">16.132</td>
+          <td style="text-align: center;">57</td>
         <tr>
         <tr>
           <td style="text-align: center;">7zip</td>
-          <td style="text-align: center;">98.461</td>
+          <td style="text-align: center;">90.151</td>
+          <td style="text-align: center;">51</td>
         <tr>
         <tr>
           <td style="text-align: center;">rar</td>
-          <td style="text-align: center;">32.957s</td>
+          <td style="text-align: center;">31.126</td>
+          <td style="text-align: center;">60</td>
         <tr>
       </tbody>
     </table>
 
-  - Pela tabela acima é perceptível que o melhor tempo de compressão foi o `gzip` com apenas 11.810 segundos e o pior foi o `7zip` com 98.461 segundos
+  - Pela tabela acima é perceptível que o melhor desempenho foi o `bzip2` pois apresentou o menor tamanho comprimido e em um tempo razoável de 16 segundos.
 
   - Acredito que o tempo possa variar de máquina para máquina, mas estes foram meus resultados.
