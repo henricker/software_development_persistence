@@ -1,0 +1,9 @@
+key=henricker
+database=postgres
+database_password=password
+email=henricker@email.com
+password=any_password_baby
+30praum=matue
+chave=valor
+outra_chave=ok
+nao_tenho_mais_ideia=tmb_nao
