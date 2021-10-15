@@ -4,9 +4,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.serializing.contracts.SerializationContract;
+import com.serializing.contracts.MapperContract;
 
-public class MapperJSON<T> implements SerializationContract<T> {
+public class MapperJSON<T> implements MapperContract<T> {
 
   private ObjectMapper objectMapper;
 

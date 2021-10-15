@@ -4,9 +4,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.serializing.contracts.SerializationContract;
+import com.serializing.contracts.MapperContract;
 
-public class MapperXML<T> implements SerializationContract<T> {
+public class MapperXML<T> implements MapperContract<T> {
 
   private XmlMapper mapper;
 

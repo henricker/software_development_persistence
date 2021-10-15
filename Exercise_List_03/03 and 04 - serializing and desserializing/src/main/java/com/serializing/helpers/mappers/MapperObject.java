@@ -3,10 +3,9 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import com.serializing.contracts.MapperContract;
 
-import com.serializing.contracts.SerializationContract;
-
-public class MapperObject<T> implements SerializationContract<T> {
+public class MapperObject<T> implements MapperContract<T> {
 
   public MapperObject() {}
 
