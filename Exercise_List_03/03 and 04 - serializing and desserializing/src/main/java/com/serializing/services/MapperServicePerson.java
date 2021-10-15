@@ -7,6 +7,7 @@ import java.security.InvalidParameterException;
 import java.util.Arrays;
 import java.util.List;
 
+import com.serializing.contracts.MapperContract;
 import com.serializing.helpers.mappers.MapperJSON;
 import com.serializing.helpers.mappers.MapperObject;
 import com.serializing.helpers.mappers.MapperXML;
@@ -14,9 +15,9 @@ import com.serializing.models.Person;
 
 public class MapperServicePerson {
   private List<Person> objects;
-  private MapperJSON<Person> mapperJSON;
-  private MapperXML<Person>  mapperXML;
-  private MapperObject<Person> mapperObject;
+  private MapperContract<Person> mapperJSON;
+  private MapperContract<Person>  mapperXML;
+  private MapperContract<Person> mapperObject;
 
   public MapperServicePerson() {
     this.objects = Arrays.asList();
