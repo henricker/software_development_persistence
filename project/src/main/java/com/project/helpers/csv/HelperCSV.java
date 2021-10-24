@@ -2,13 +2,13 @@ package com.project.helpers.csv;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import com.opencsv.CSVWriter;
+import com.project.helpers.ClassUtil;
 
 public class HelperCSV<T extends Object> {
   private Class<T> classType;
@@ -19,7 +19,7 @@ public class HelperCSV<T extends Object> {
     this.classType = classType;
     this.csvWriter = this.csvWriterFactory();
     if(!this.csvIsNull()) {
-      String[] headers = this.getHeaders();
+      String[] headers = ClassUtil.getAttributes(classType);
       List<String[]> data = new ArrayList<>();
       data.add(headers);
   
@@ -29,7 +29,7 @@ public class HelperCSV<T extends Object> {
   }
 
   public void append(T entity) throws Exception {
-    String[] values = this.getDataFromEntity(entity);
+    String[] values = ClassUtil.getAttributesValues(entity);
     List<String[]> data = new ArrayList<>();
     data.add(values);
 
@@ -66,33 +66,5 @@ public class HelperCSV<T extends Object> {
       throw err;
     }
 
-  }
-
-  private String[] getHeaders() throws Exception {
-    Field[] fields = this.classType.getDeclaredFields();
-    String[] headers = new String[fields.length];
-
-
-    int counter = 0;
-    for(Field field : fields) {
-      field.setAccessible(true);
-      headers[counter++] = field.getName();
-    }
-
-    return headers;
-  }
-
-  private String[] getDataFromEntity(T entity) throws Exception {
-    Field[] fields = entity.getClass().getDeclaredFields();
-    String[] values = new String[fields.length];
-
-    int counter = 0;
-    for(Field field: fields) {
-      field.setAccessible(true);
-      String value = String.valueOf(field.get(entity));
-      values[counter++] = value;
-    }
-
-    return values;
   }
 }
