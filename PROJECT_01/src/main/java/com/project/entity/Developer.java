@@ -8,13 +8,6 @@ public class Developer implements Serializable {
   private String favoriteLanguage;
   private Level level;
 
-  public Developer(String name, String github,  String favoriteLanguage, Level level) {
-      this.name = name;
-      this.level = level;
-      this.github = github;
-      this.favoriteLanguage = favoriteLanguage;
-  }
-
   public Developer(Map<String, Object> data) {
     this.name = String.valueOf(data.get("name"));
     this.level = Level.valueOf(String.valueOf(data.get("level")));

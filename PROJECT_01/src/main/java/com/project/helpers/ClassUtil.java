@@ -36,7 +36,7 @@ public class ClassUtil {
   public static <T extends Object> T getInstance(Class<T> classtype, Map<String, Object> data) throws Exception {
     @SuppressWarnings("unchecked")
     Constructor<T>[] constructors = (Constructor<T>[]) classtype.getConstructors();
-    T entity = constructors[1].newInstance(data);
+    T entity = constructors[0].newInstance(data);
 
     return entity;
   }
