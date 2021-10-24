@@ -90,7 +90,6 @@ public class HelperCSV<T extends Object> {
     for(Field field: fields) {
       field.setAccessible(true);
       String value = String.valueOf(field.get(entity));
-      System.out.println(value);
       values[counter++] = value;
     }
 
