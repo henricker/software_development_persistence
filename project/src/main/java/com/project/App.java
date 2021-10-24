@@ -1,26 +1,16 @@
 package com.project;
 
-import java.io.Serializable;
-import com.project.helpers.csv.HelperCSV;
+import com.project.entity.Developer;
+import com.project.services.EntityServiceCSV;
 
 public class App 
 {
     public static void main( String[] args ) throws Exception
     {
-        HelperCSV<Test> helperCSV = new HelperCSV<Test>(Test.class);
-        helperCSV.append(new Test("henricker", "boa viagem", 21));
+        // HelperCSV<Developer> helperCSV = new HelperCSV<Developer>(Developer.class);
+        // helperCSV.append(new Developer("Henrique Vieira", "henricker", "Javascript", Level.SENIOR));
+
+        EntityServiceCSV<Developer> developerServiceCSV = new EntityServiceCSV<>(Developer.class);
+        developerServiceCSV.append();
     }
 }
-
-class Test implements Serializable {
-    private String name;
-    private String address;
-    private Integer age;
-
-    Test(String name, String address, Integer age) {
-        this.name = name;
-        this.age = age;
-        this.address = address;
-    }
-}
-
