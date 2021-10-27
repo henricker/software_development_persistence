@@ -1,23 +1,52 @@
 package com.project.helpers.csv;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-
+import java.util.TreeMap;
 import com.project.helpers.ClassUtil;
 
 public class HelperCSV<T extends Object> {
   private Class<T> classType;
   private FileWriter fileWriter;
+  private FileReader fileReader;
   private BufferedWriter csvWriter;
+  private BufferedReader csvReader;
 
   public HelperCSV(Class<T> classType) throws Exception {
     this.classType = classType;
     this.csvWriter = this.csvWriterFactory();
     if(!this.csvIsNull())
       this.appendHeaders();
+  }
+
+  public List<T> load() throws Exception {
+    this.csvReader = this.csvReaderFactory();
+    List<T> entities = new ArrayList<>();
+
+    String[] headers = this.csvReader.readLine().split(",");
+    String values = this.csvReader.readLine();
+
+    while(values != null) {
+      String[] valuesSplited = values.split(",");
+      Map<String, Object> data = new TreeMap<>();
+      for(int i = 0; i < headers.length; i++)
+        data.put(headers[i], valuesSplited[i]);
+      
+      T entity = ClassUtil.getInstance(this.classType, data);
+      entities.add(entity);
+      values = this.csvReader.readLine();
+    }
+
+    this.closeStreams();
+    return entities;
   }
 
   public void append(T entity) throws Exception {
@@ -39,6 +68,11 @@ public class HelperCSV<T extends Object> {
     return new BufferedWriter(fileWriter);
   }
 
+  private BufferedReader csvReaderFactory() throws Exception {
+    this.fileReader = new FileReader("resources/" + this.classType.getSimpleName() + ".csv");
+    return new BufferedReader(fileReader);
+  }
+
   private void closeStreams() throws Exception {
     if(this.csvWriter != null) {
       this.csvWriter.close();
@@ -50,6 +84,16 @@ public class HelperCSV<T extends Object> {
       this.fileWriter = null;
     }
 
+    if(this.fileReader != null) {
+      this.fileReader.close();
+      this.fileReader = null;
+    }
+
+    if(this.csvReader != null) {
+      this.csvReader.close();
+      this.csvReader = null;
+    }
+
   }
 
   private boolean csvIsNull() throws Exception {
@@ -58,9 +102,6 @@ public class HelperCSV<T extends Object> {
       return true;
     } catch(NoSuchElementException err) {
       return false;
-    } catch(Exception err) {
-      throw err;
     }
-
   }
 }

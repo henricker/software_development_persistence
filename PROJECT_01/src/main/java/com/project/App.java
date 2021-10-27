@@ -3,6 +3,7 @@ package com.project;
 import java.lang.reflect.InvocationTargetException;
 
 import com.project.entity.Developer;
+import com.project.helpers.csv.HelperCSV;
 import com.project.services.EntityServiceCSV;
 
 public class App 
@@ -10,10 +11,13 @@ public class App
     public static void main( String[] args ) throws Exception
     {
         try {
-            EntityServiceCSV<Developer> developerServiceCSV = new EntityServiceCSV<>(Developer.class);
-            developerServiceCSV.append();
+            // EntityServiceCSV<Developer> developerServiceCSV = new EntityServiceCSV<>(Developer.class);
+            // developerServiceCSV.append();
+
+            HelperCSV<Developer> developerCSV = new HelperCSV<>(Developer.class);
+            developerCSV.load();
         } catch(InvocationTargetException err) {
-            System.out.println("Just values: PLENO, SENIOR, JUNIOR, INTERN");
+            System.out.println("In the level field, only the following values ​​are accepted: PLENO, SENIOR, JUNIOR, INTERN");
         } catch(Exception err) {
             System.err.println(err);
         }

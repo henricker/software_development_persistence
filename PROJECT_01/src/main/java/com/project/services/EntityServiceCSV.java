@@ -24,12 +24,16 @@ public class EntityServiceCSV<T extends Object> {
       Map<String, Object> data = new TreeMap<>();
       for(String att : attributes) {
         System.out.print(att + ": ");
-        String value = scanner.next();
+        String value = scanner.nextLine();
         data.put(att, value);
       }
 
       T entity = ClassUtil.getInstance(this.classType, data);
       this.helperCSV.append(entity);
     }
+  }
+
+  public void transferToJSONAndXML() {
+    
   }
 }

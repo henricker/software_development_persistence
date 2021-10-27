@@ -14,4 +14,9 @@ public class Developer implements Serializable {
     this.github = String.valueOf(data.get("github"));
     this.favoriteLanguage = String.valueOf(data.get("favoriteLanguage"));
   }
+
+  @Override
+  public String toString() {
+    return "{ name:  " + this.name + ", level: " + this.level + ", github: " + this.github + ", favoriteLanguage: " + this.favoriteLanguage + "}";
+  }
 }
