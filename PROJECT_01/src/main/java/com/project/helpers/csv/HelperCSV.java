@@ -22,9 +22,7 @@ public class HelperCSV<T extends Object> {
 
   public HelperCSV(Class<T> classType) throws Exception {
     this.classType = classType;
-    this.csvWriter = this.csvWriterFactory();
-    if(!this.csvIsNull())
-      this.appendHeaders();
+    this.appendHeaders();
   }
 
   public List<T> load() throws Exception {
@@ -58,9 +56,12 @@ public class HelperCSV<T extends Object> {
   }
 
   private void appendHeaders() throws Exception {
-    String[] headers = ClassUtil.getAttributes(classType);
-    this.csvWriter.write(String.join(",", headers) + "\n");
-    this.closeStreams();
+    this.csvWriter = this.csvWriterFactory();
+    if(!this.csvIsNull()) {
+      String[] headers = ClassUtil.getAttributes(classType);
+      this.csvWriter.write(String.join(",", headers) + "\n");
+      this.closeStreams();
+    }
   }
 
   private BufferedWriter csvWriterFactory() throws Exception {

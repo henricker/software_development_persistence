@@ -1,21 +1,16 @@
 package com.project;
 
 import java.lang.reflect.InvocationTargetException;
-
 import com.project.entity.Developer;
-import com.project.helpers.csv.HelperCSV;
 import com.project.services.EntityServiceCSV;
 
-public class App 
+public class Solve01 
 {
     public static void main( String[] args ) throws Exception
     {
         try {
-            // EntityServiceCSV<Developer> developerServiceCSV = new EntityServiceCSV<>(Developer.class);
-            // developerServiceCSV.append();
-
-            HelperCSV<Developer> developerCSV = new HelperCSV<>(Developer.class);
-            developerCSV.load();
+            EntityServiceCSV<Developer> developerServiceCSV = new EntityServiceCSV<>(Developer.class);
+            developerServiceCSV.append();
         } catch(InvocationTargetException err) {
             System.out.println("In the level field, only the following values ​​are accepted: PLENO, SENIOR, JUNIOR, INTERN");
         } catch(Exception err) {
