@@ -1,46 +1,42 @@
 package com.project.helpers.csv;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import com.opencsv.CSVWriter;
 import com.project.helpers.ClassUtil;
 
 public class HelperCSV<T extends Object> {
   private Class<T> classType;
-  private CSVWriter csvWriter;
   private FileWriter fileWriter;
+  private BufferedWriter csvWriter;
 
   public HelperCSV(Class<T> classType) throws Exception {
     this.classType = classType;
     this.csvWriter = this.csvWriterFactory();
-    if(!this.csvIsNull()) {
-      String[] headers = ClassUtil.getAttributes(classType);
-      List<String[]> data = new ArrayList<>();
-      data.add(headers);
-  
-      this.csvWriter.writeAll(data, false);
-      this.closeStreams();
-    }
+    if(!this.csvIsNull())
+      this.appendHeaders();
   }
 
   public void append(T entity) throws Exception {
-    String[] values = ClassUtil.getAttributesValues(entity);
-    List<String[]> data = new ArrayList<>();
-    data.add(values);
-
     this.csvWriter = this.csvWriterFactory();
-    this.csvWriter.writeAll(data, false);
+    String[] values = ClassUtil.getAttributesValues(entity);
+
+    this.csvWriter.write(String.join(",", values)  + "\n");
     this.closeStreams();
   }
 
-  private CSVWriter csvWriterFactory() throws Exception {
+  private void appendHeaders() throws Exception {
+    String[] headers = ClassUtil.getAttributes(classType);
+    this.csvWriter.write(String.join(",", headers) + "\n");
+    this.closeStreams();
+  }
+
+  private BufferedWriter csvWriterFactory() throws Exception {
     this.fileWriter = new FileWriter(new File("resources/" + this.classType.getSimpleName() + ".csv"), true);
-    return new CSVWriter(fileWriter);
+    return new BufferedWriter(fileWriter);
   }
 
   private void closeStreams() throws Exception {
