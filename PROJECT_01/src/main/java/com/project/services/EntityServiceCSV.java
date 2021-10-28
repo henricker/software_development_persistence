@@ -26,8 +26,7 @@ public class EntityServiceCSV<T extends Object> {
     this.mapperXML = new MapperXML<>();
   }
 
-  public void append() throws Exception {
-    try(Scanner scanner = new Scanner(System.in)) {
+  public void append(Scanner scanner) throws Exception {
       String[] attributes = ClassUtil.getAttributes(this.classType);
 
       System.out.println("Add the following data to build the entity:");
@@ -40,7 +39,6 @@ public class EntityServiceCSV<T extends Object> {
 
       T entity = ClassUtil.getInstance(this.classType, data);
       this.helperCSV.append(entity);
-    }
   }
 
   public void transferToJSONAndXML() throws Exception{
