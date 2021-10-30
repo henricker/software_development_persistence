@@ -1,4 +1,4 @@
-package com.project.helpers.csv;
+package com.developers.helpers.csv;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,7 +11,8 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.TreeMap;
-import com.project.helpers.ClassUtil;
+
+import com.developers.helpers.ClassUtil;
 
 public class HelperCSV<T extends Object> {
   private Class<T> classType;
@@ -65,12 +66,16 @@ public class HelperCSV<T extends Object> {
   }
 
   private BufferedWriter csvWriterFactory() throws Exception {
-    this.fileWriter = new FileWriter(new File("resources/" + this.classType.getSimpleName() + ".csv"), true);
+    new File("resources/" + this.classType.getSimpleName()).mkdir();
+    this.fileWriter = new FileWriter(
+      new File(
+        "resources/" + this.classType.getSimpleName() + "/" + this.classType.getSimpleName()+ ".csv"), true
+      );
     return new BufferedWriter(fileWriter);
   }
 
   private BufferedReader csvReaderFactory() throws Exception {
-    this.fileReader = new FileReader("resources/" + this.classType.getSimpleName() + ".csv");
+    this.fileReader = new FileReader("resources/" + this.classType.getSimpleName() + "/" + this.classType.getSimpleName()+ ".csv");
     return new BufferedReader(fileReader);
   }
 
@@ -98,7 +103,7 @@ public class HelperCSV<T extends Object> {
   }
 
   private boolean csvIsNull() throws Exception {
-    try(Scanner fileScan = new Scanner(new File("resources/" + this.classType.getSimpleName() + ".csv"))) {
+    try(Scanner fileScan = new Scanner(new File("resources/" + this.classType.getSimpleName() + "/" + this.classType.getSimpleName() + ".csv"))) {
       fileScan.nextLine();
       return true;
     } catch(NoSuchElementException err) {

@@ -2,13 +2,19 @@
   <item>
     <name>Henrique Vieira</name>
     <github>henricker</github>
-    <favoriteLanguage>Java</favoriteLanguage>
-    <level>JUNIOR</level>
+    <favoriteLanguage>Javascript</favoriteLanguage>
+    <level>PLENO</level>
   </item>
   <item>
     <name>Ylana</name>
     <github>ylaninha</github>
     <favoriteLanguage>C#</favoriteLanguage>
+    <level>SENIOR</level>
+  </item>
+  <item>
+    <name>Mano brown</name>
+    <github>manoBrown</github>
+    <favoriteLanguage>Scala</favoriteLanguage>
     <level>SENIOR</level>
   </item>
 </ArrayList>

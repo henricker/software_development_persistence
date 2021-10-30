@@ -1,4 +1,4 @@
-package com.project.entity;
+package com.developers.entity;
 
 public enum Level {
   SENIOR,

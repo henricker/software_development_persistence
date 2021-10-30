@@ -1,4 +1,4 @@
-package com.project.services;
+package com.developers.services;
 
 import java.io.FileOutputStream;
 import java.util.List;
@@ -6,11 +6,11 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-import com.project.helpers.ClassUtil;
-import com.project.helpers.csv.HelperCSV;
-import com.project.helpers.mappers.MapperContract;
-import com.project.helpers.mappers.implementations.MapperJSON;
-import com.project.helpers.mappers.implementations.MapperXML;
+import com.developers.helpers.ClassUtil;
+import com.developers.helpers.csv.HelperCSV;
+import com.developers.helpers.mappers.MapperContract;
+import com.developers.helpers.mappers.implementations.MapperJSON;
+import com.developers.helpers.mappers.implementations.MapperXML;
 
 public class EntityServiceCSV<T extends Object> {
   private Class<T> classType;
@@ -44,7 +44,7 @@ public class EntityServiceCSV<T extends Object> {
     List<T> entities = this.helperCSV.load();
     System.out.println(entities);
 
-    this.mapperJSON.serializationAll(new FileOutputStream("resources/developers.json"), entities);
-    this.mapperXML.serializationAll(new FileOutputStream("resources/developers.xml"), entities);
+    this.mapperJSON.serializationAll(new FileOutputStream("resources/" + this.classType.getSimpleName() + "/" + this.classType.getSimpleName() + ".json"), entities);
+    this.mapperXML.serializationAll(new FileOutputStream("resources/" + this.classType.getSimpleName() + "/" + this.classType.getSimpleName() + ".xml"), entities);
   }
 }

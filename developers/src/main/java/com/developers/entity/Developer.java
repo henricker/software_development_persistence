@@ -1,4 +1,4 @@
-package com.project.entity;
+package com.developers.entity;
 import java.io.Serializable;
 import java.util.Map;
 

@@ -1,7 +1,7 @@
-package com.project;
+package com.developers;
 
-import com.project.entity.Developer;
-import com.project.services.EntityServiceCSV;
+import com.developers.entity.Developer;
+import com.developers.services.EntityServiceCSV;
 
 public class Solve02 {
   

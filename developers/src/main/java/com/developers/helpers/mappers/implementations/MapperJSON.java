@@ -1,11 +1,11 @@
-package com.project.helpers.mappers.implementations;
+package com.developers.helpers.mappers.implementations;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
 
+import com.developers.helpers.mappers.MapperContract;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.project.helpers.mappers.MapperContract;
 
 public class MapperJSON<T extends Object> implements MapperContract<T> {
 
