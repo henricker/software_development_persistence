@@ -1,6 +1,5 @@
 package com.project.services;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
 import java.util.Map;
@@ -45,11 +44,7 @@ public class EntityServiceCSV<T extends Object> {
     List<T> entities = this.helperCSV.load();
     System.out.println(entities);
 
-    for(T entity : entities) {
-      new File("resources/serializations/").mkdir();
-      new File("resources/serializations/" +entity.hashCode()).mkdir();
-      this.mapperJSON.serialization(new FileOutputStream("resources/serializations/" + entity.hashCode() + "/object.json"), entity);
-      this.mapperXML.serialization(new FileOutputStream("resources/serializations/" + entity.hashCode() + "/object.xml"), entity);
-    }
+    this.mapperJSON.serializationAll(new FileOutputStream("resources/developers.json"), entities);
+    this.mapperXML.serializationAll(new FileOutputStream("resources/developers.xml"), entities);
   }
 }

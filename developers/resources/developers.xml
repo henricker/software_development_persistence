@@ -1,0 +1,14 @@
+<ArrayList>
+  <item>
+    <name>Henrique Vieira</name>
+    <github>henricker</github>
+    <favoriteLanguage>Java</favoriteLanguage>
+    <level>JUNIOR</level>
+  </item>
+  <item>
+    <name>Ylana</name>
+    <github>ylaninha</github>
+    <favoriteLanguage>C#</favoriteLanguage>
+    <level>SENIOR</level>
+  </item>
+</ArrayList>
