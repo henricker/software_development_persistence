@@ -70,7 +70,8 @@
       - Lembrando!, esses diretórios e arquivos são gerados automaticamente.
       - A abertura do arquivo csv para adicionar os desenvolvedores estão em modo append, ou seja, não há perda dos dados caso execute novamente para adicionar novos dados.
   - O exemplo a seguir mosta os dados persistidos no csv:
-  ![](public/developer-csv.png)
+  
+    ![](public/developer-csv.png)
   
   2. Para rodar a terceira questão basta rodar o arquivo Solve02.java que ele irá pegar todos os dados no arquivo csv e salvar a Lista de dados em um arquivo JSON e XML.
   
