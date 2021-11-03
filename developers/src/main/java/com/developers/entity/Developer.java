@@ -20,16 +20,32 @@ public class Developer implements Serializable {
     return this.name;
   }
 
+  public void setName(String name) {
+    this.name =  name;
+  }
+
   public String getLevel() {
     return String.valueOf(this.level);
+  }
+
+  public void setLevel(Level level) {
+    this.level = level;
   }
 
   public String getGithub() {
     return this.github;
   }
 
+  public void setGithub(String github) {
+    this.github = github;
+  }
+
   public String getFavoriteLanguage() {
     return this.favoriteLanguage;
+  }
+
+  public void setFavoriteLanguage(String favoriteLanguage) {
+    this.favoriteLanguage = favoriteLanguage;
   }
 
   @Override
