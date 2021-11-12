@@ -4,3 +4,6 @@
 **/**/.vscode/
 **/**/target/
 **/**/.settings
+**/**/.classpath
+**/**/.factorypath
+**/**/.project
