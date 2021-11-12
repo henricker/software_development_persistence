@@ -18,6 +18,8 @@ public class DeleteByIdEmployeeUseCase implements IUseCaseContract<String, Void>
     if(!employeeExists)
       throw EmployeeErrors.employeeNotFoundError();
 
+    this.repository.deleteBy("id", id);
+
     return null;
   }
   
