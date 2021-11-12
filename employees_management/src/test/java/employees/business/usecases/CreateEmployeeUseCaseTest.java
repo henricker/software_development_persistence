@@ -76,5 +76,13 @@ public class CreateEmployeeUseCaseTest {
       inputCreateEmployee.getPhone()
     ));
   }
- 
+
+  @Test(expected = EmployeeErrors.class)
+  public void shouldThrowErrorIfRepositoryThrows() {
+      IEmployeeRepository repo = Mockito.spy(new FakeEmployeeRepository());
+      when(repo.findBy("cpf", "valid_cpf")).thenThrow(EmployeeErrors.employeeCreationError());
+      CreateEmployeeUseCase useCase = new CreateEmployeeUseCase(repo);
+  
+      useCase.exec(FakeEmployeeDTOFactory.createEmployeeInput());
+  }
 }
