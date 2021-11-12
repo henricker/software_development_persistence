@@ -67,5 +67,21 @@ public class CreateEmployeeUseCaseTest {
       )
     );
   }
+
+  @Test(expected = EmployeeErrors.class)
+  public void shouldThrowsIfRegistrationAlreadyInUse() {
+    IEmployeeRepository repo = Mockito.spy(new FakeEmployeeRepository());
+    when(repo.findBy("cpf", "valid_cpf")).thenReturn(null);
+    CreateEmployeeUseCase useCase = new CreateEmployeeUseCase(repo);
+
+    useCase.exec(new CreateEmployeeInputDTO(
+      "valid_cpf", 
+      "valid_registration", 
+      "valid_name", 
+      "valid@email.com", 
+      "valid_phone"
+      )
+    );
+  }
  
 }
