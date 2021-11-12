@@ -16,8 +16,8 @@ public class ListEmployeesUseCase implements IUseCaseContract<ListEmployeeInputD
 
   @Override
   public List<Employee> exec(ListEmployeeInputDTO options) {
-    this.repository.findAll(options.getPage(), options.getLimit());
-    return null;
+    List<Employee> employees = this.repository.findAll(options.getPage(), options.getLimit());
+    return employees;
   }
 
 }
