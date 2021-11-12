@@ -1,16 +1,15 @@
 package employees.business.dto.employee;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@AllArgsConstructor
+
 @Getter
 @Setter
-public class CreateEmployeeInputDTO {
+public class CreateEmployeeInputDTO extends BaseEmployee {
+
+  public CreateEmployeeInputDTO(String cpf, String registration, String name, String email, String phone) {
+    super(registration, name, email, phone);
+  }
   private String cpf;
-  private String registration;
-  private String name;
-  private String email;
-  private String phone;
 }
