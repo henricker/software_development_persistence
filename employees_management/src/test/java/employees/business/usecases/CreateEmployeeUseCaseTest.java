@@ -32,5 +32,24 @@ public class CreateEmployeeUseCaseTest {
   
       Mockito.verify(repo).findBy("cpf", "valid_cpf");  
   }
+
+  @Test
+  public void shouldCallFindbyMethodOfRepositoryWithRegistrationandValueRegistration() {
+      IEmployeeRepository repo = Mockito.spy(new FakeEmployeeRepository());
+      when(repo.findBy("cpf", "valid_cpf")).thenReturn(null);
+      when(repo.findBy("registration", "valid_registration")).thenReturn(null);
+      CreateEmployeeUseCase useCase = new CreateEmployeeUseCase(repo);
+  
+      useCase.exec(new CreateEmployeeInputDTO(
+        "valid_cpf", 
+        "valid_registration", 
+        "valid_name", 
+        "valid@email.com", 
+        "valid_phone"
+        )
+      );
+  
+      Mockito.verify(repo).findBy("registration", "valid_registration");  
+  }
  
 }
