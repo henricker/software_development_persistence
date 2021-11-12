@@ -58,7 +58,7 @@ public class CreateEmployeeUseCaseTest {
     useCase.exec(FakeEmployeeDTOFactory.createEmployeeInput());
   }
 
-  @Test()
+  @Test
   public void shouldCallCreateMethodOfRepositoryWithCorrectValues() {
     IEmployeeRepository repo = Mockito.spy(new FakeEmployeeRepository());
     when(repo.findBy("cpf", "valid_cpf")).thenReturn(null);
