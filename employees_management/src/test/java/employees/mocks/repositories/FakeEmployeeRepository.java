@@ -12,15 +12,15 @@ public class FakeEmployeeRepository implements IEmployeeRepository {
   public void create(Employee employee) {}
 
   @Override
-  public Employee findBy(String uniqueKey, String value) {
+  public Employee findBy(String uniqueKey, Object value) {
     return new Employee("qew67qw5e-123qsdqe-2312dqsd", "00000000000", "123212", "Henricker Vieira", "email@valid.com", "88988888888");
   }
 
   @Override
-  public void updateBy(String uniqueKey, Employee employee) {}
+  public void updateBy(String uniqueKey, Object valueUniqueKey, Employee employee) {}
 
   @Override
-  public void deleteBy(String uniqueKey, String value) {}
+  public void deleteBy(String uniqueKey, Object value) {}
 
   @Override
   public List<Employee> findAll(Integer page, Integer limit) {

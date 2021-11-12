@@ -8,8 +8,8 @@ import lombok.Setter;
 @Setter
 public class UpdateEmployeeInputDTO extends BaseEmployee {
   private String id;
-  public UpdateEmployeeInputDTO(String id, String registration, String name, String email, String phone) {
-   super(registration, name, email, phone);
+  public UpdateEmployeeInputDTO(String id, String cpf, String registration, String name, String email, String phone) {
+   super(cpf, registration, name, email, phone);
    this.id = id;
   }
 }

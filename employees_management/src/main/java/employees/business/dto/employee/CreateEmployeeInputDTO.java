@@ -7,9 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CreateEmployeeInputDTO extends BaseEmployee {
-
   public CreateEmployeeInputDTO(String cpf, String registration, String name, String email, String phone) {
-    super(registration, name, email, phone);
+    super(cpf, registration, name, email, phone);
   }
-  private String cpf;
 }
