@@ -13,7 +13,7 @@ import employees.mocks.repositories.FakeEmployeeRepository;
 public class DeleteByIdEmployeeUseCaseTest {
   
   @Test
-  public void shouldCallDeleteByMethodOfRepositoryWithCorrectIdAndValueId() {
+  public void shouldCallFindByMethodOfRepositoryWithCorrectId() {
     IEmployeeRepository repo = Mockito.spy(new FakeEmployeeRepository());
     DeleteByIdEmployeeUseCase useCase = new DeleteByIdEmployeeUseCase(repo);
 
@@ -30,5 +30,15 @@ public class DeleteByIdEmployeeUseCaseTest {
     useCase.exec("valid_id");
     Mockito.verify(repo).findBy("id", "valid_id");
   }
+
+  @Test
+  public void shouldCallDeleteByMethodOfRepositoryWithCorrectId() {
+    IEmployeeRepository repo = Mockito.spy(new FakeEmployeeRepository());
+    DeleteByIdEmployeeUseCase useCase = new DeleteByIdEmployeeUseCase(repo);
+
+    useCase.exec("valid_id");
+    Mockito.verify(repo).deleteBy("id", "valid_id");
+  }
+
 
 }
