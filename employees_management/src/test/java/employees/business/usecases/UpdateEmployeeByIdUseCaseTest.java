@@ -9,6 +9,7 @@ import employees.business.dto.employee.UpdateEmployeeInputDTO;
 import employees.business.module.errors.employee.EmployeeErrors;
 import employees.business.repositories.IEmployeeRepository;
 import employees.business.usecases.employee.UpdateEmployeeByIdUseCase;
+import employees.domain.entities.Employee;
 import employees.mocks.repositories.FakeEmployeeRepository;
 
 public class UpdateEmployeeByIdUseCaseTest {
@@ -132,35 +133,37 @@ public class UpdateEmployeeByIdUseCaseTest {
     );
   }
 
-  // @Test
-  // public void shouldCallUpdateByOfRepositoryWithCorrectValues() {
-  //   IEmployeeRepository repo = Mockito.spy(new FakeEmployeeRepository());
-  //   UpdateEmployeeByIdUseCase useCase = new UpdateEmployeeByIdUseCase(repo);
+  @Test
+  public void shouldCallUpdateByOfRepositoryWithCorrectValues() {
+    IEmployeeRepository repo = Mockito.spy(new FakeEmployeeRepository());
+    when(repo.findBy("cpf", "valid_cpf")).thenReturn(null);
+    when(repo.findBy("registration", "valid_registration")).thenReturn(null);
+    UpdateEmployeeByIdUseCase useCase = new UpdateEmployeeByIdUseCase(repo);
 
-  //   useCase.exec(
-  //     new UpdateEmployeeInputDTO(
-  //       "valid_id", 
-  //       "valid_cpf",
-  //       "valid_registration", 
-  //       "valid_name", 
-  //       "valid_email", 
-  //       "valid_phone"
-  //     )
-  //   );
+    useCase.exec(
+      new UpdateEmployeeInputDTO(
+        "valid_id", 
+        "valid_cpf",
+        "valid_registration", 
+        "valid_name", 
+        "valid_email", 
+        "valid_phone"
+      )
+    );
 
 
-  //   Mockito.verify(repo).updateBy(
-  //     "id", 
-  //     "valid_id", 
-  //     new Employee(
-  //       "valid_id", 
-  //       "valid_cpf",
-  //       "valid_registration", 
-  //       "valid_name", 
-  //       "valid_email", 
-  //       "valid_phone"
-  //     )
-  //   );
-  // }
+    Mockito.verify(repo).updateBy(
+      "id", 
+      "valid_id", 
+      new Employee(
+        "valid_id", 
+        "valid_cpf",
+        "valid_registration", 
+        "valid_name", 
+        "valid_email", 
+        "valid_phone"
+      )
+    );
+  }
 
 }
