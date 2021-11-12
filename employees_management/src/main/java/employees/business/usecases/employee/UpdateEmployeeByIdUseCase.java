@@ -12,10 +12,15 @@ public class UpdateEmployeeByIdUseCase implements IUseCaseContract<UpdateEmploye
 
   @Override
   public Void exec(UpdateEmployeeInputDTO data) {
-    Boolean employeeExists = this.repository.findBy("id", data.getId()) != null ? true : false;
+    Boolean employeeExists = this.repository.findBy("id", data.getId()) != null;
 
     if(!employeeExists)
       throw EmployeeErrors.employeeNotFoundError();
+
+    Boolean cpfExists = this.repository.findBy("cpf", data.getCpf()) != null;
+
+    if(cpfExists)
+      throw EmployeeErrors.cpfAlreadyExistsError();
 
     return null;
   }
