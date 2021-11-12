@@ -9,7 +9,7 @@ import employees.business.dto.employee.UpdateEmployeeInputDTO;
 import employees.business.module.errors.employee.EmployeeErrors;
 import employees.business.repositories.IEmployeeRepository;
 import employees.business.usecases.employee.UpdateEmployeeByIdUseCase;
-import employees.domain.entities.Employee;
+import employees.mocks.dto.employee.FakeEmployeeDTOFactory;
 import employees.mocks.repositories.FakeEmployeeRepository;
 
 public class UpdateEmployeeByIdUseCaseTest {
@@ -41,17 +41,7 @@ public class UpdateEmployeeByIdUseCaseTest {
     when(repo.findBy("id", "valid_id")).thenReturn(null);
     when(repo.findBy("registration", "valid_registration")).thenReturn(null);
     UpdateEmployeeByIdUseCase useCase = new UpdateEmployeeByIdUseCase(repo);
-
-    useCase.exec(
-      new UpdateEmployeeInputDTO(
-        "valid_id",
-        "valid_cpf", 
-        "valid_registration", 
-        "valid_name", 
-        "valid_email", 
-        "valid_phone"
-      )
-    );
+    useCase.exec(FakeEmployeeDTOFactory.updateEmployeeInput());
   }
 
   @Test
@@ -60,18 +50,7 @@ public class UpdateEmployeeByIdUseCaseTest {
     when(repo.findBy("cpf", "valid_cpf")).thenReturn(null);
     when(repo.findBy("registration", "valid_registration")).thenReturn(null);
     UpdateEmployeeByIdUseCase useCase = new UpdateEmployeeByIdUseCase(repo);
-
-    useCase.exec(
-      new UpdateEmployeeInputDTO(
-        "valid_id",
-        "valid_cpf",
-        "valid_registration", 
-        "valid_name", 
-        "valid_email", 
-        "valid_phone"
-      )
-    );
-
+    useCase.exec(FakeEmployeeDTOFactory.updateEmployeeInput());
     Mockito.verify(repo).findBy("cpf", "valid_cpf");
   }
 
@@ -80,17 +59,7 @@ public class UpdateEmployeeByIdUseCaseTest {
   public void shouldThrowEmployeeErrorIfCpfAlreadyExists() {
     IEmployeeRepository repo = Mockito.spy(new FakeEmployeeRepository());
     UpdateEmployeeByIdUseCase useCase = new UpdateEmployeeByIdUseCase(repo);
-
-    useCase.exec(
-      new UpdateEmployeeInputDTO(
-        "valid_id",
-        "valid_cpf", 
-        "valid_registration", 
-        "valid_name", 
-        "valid_email", 
-        "valid_phone"
-      )
-    );
+    useCase.exec(FakeEmployeeDTOFactory.updateEmployeeInput());
   }
 
   @Test
@@ -99,18 +68,7 @@ public class UpdateEmployeeByIdUseCaseTest {
     when(repo.findBy("cpf", "valid_cpf")).thenReturn(null);
     when(repo.findBy("registration", "valid_registration")).thenReturn(null);
     UpdateEmployeeByIdUseCase useCase = new UpdateEmployeeByIdUseCase(repo);
-
-    useCase.exec(
-      new UpdateEmployeeInputDTO(
-        "valid_id",
-        "valid_cpf",
-        "valid_registration", 
-        "valid_name", 
-        "valid_email", 
-        "valid_phone"
-      )
-    );
-
+    useCase.exec(FakeEmployeeDTOFactory.updateEmployeeInput());
     Mockito.verify(repo).findBy("cpf", "valid_cpf");
   }
 
@@ -120,17 +78,7 @@ public class UpdateEmployeeByIdUseCaseTest {
     IEmployeeRepository repo = Mockito.spy(new FakeEmployeeRepository());
     when(repo.findBy("cpf", "valid_cpf")).thenReturn(null);
     UpdateEmployeeByIdUseCase useCase = new UpdateEmployeeByIdUseCase(repo);
-
-    useCase.exec(
-      new UpdateEmployeeInputDTO(
-        "valid_id",
-        "valid_cpf", 
-        "valid_registration", 
-        "valid_name", 
-        "valid_email", 
-        "valid_phone"
-      )
-    );
+    useCase.exec(FakeEmployeeDTOFactory.updateEmployeeInput());
   }
 
   @Test
@@ -139,30 +87,13 @@ public class UpdateEmployeeByIdUseCaseTest {
     when(repo.findBy("cpf", "valid_cpf")).thenReturn(null);
     when(repo.findBy("registration", "valid_registration")).thenReturn(null);
     UpdateEmployeeByIdUseCase useCase = new UpdateEmployeeByIdUseCase(repo);
-
-    useCase.exec(
-      new UpdateEmployeeInputDTO(
-        "valid_id", 
-        "valid_cpf",
-        "valid_registration", 
-        "valid_name", 
-        "valid_email", 
-        "valid_phone"
-      )
-    );
+    useCase.exec(FakeEmployeeDTOFactory.updateEmployeeInput());
 
 
     Mockito.verify(repo).updateBy(
       "id", 
       "valid_id", 
-      new Employee(
-        "valid_id", 
-        "valid_cpf",
-        "valid_registration", 
-        "valid_name", 
-        "valid_email", 
-        "valid_phone"
-      )
+      FakeEmployeeDTOFactory.updateEmployeeInput().map()
     );
   }
 

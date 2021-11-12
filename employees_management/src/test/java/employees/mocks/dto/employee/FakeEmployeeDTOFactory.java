@@ -2,6 +2,7 @@ package employees.mocks.dto.employee;
 
 import employees.business.dto.employee.CreateEmployeeInputDTO;
 import employees.business.dto.employee.ListEmployeeInputDTO;
+import employees.business.dto.employee.UpdateEmployeeInputDTO;
 
 public class FakeEmployeeDTOFactory {
 
@@ -17,6 +18,10 @@ public class FakeEmployeeDTOFactory {
   
   public static ListEmployeeInputDTO listEmployeeInput() {
     return new ListEmployeeInputDTO();
+  }
+
+  public static UpdateEmployeeInputDTO updateEmployeeInput() {
+    return new UpdateEmployeeInputDTO("valid_id", "valid_cpf", "valid_registration", "valid_name", "valid_email", "valid_phone");
   }
   
 }
