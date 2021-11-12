@@ -14,7 +14,7 @@ public class EmployeeErrors extends Error {
       new ErrorBody(
         "UE-001", 
         "Error during creation of the employee entity, please try again later", 
-        "entityCreationFailed"
+        "EmployeeCreationFailed"
         )
       );
   }
@@ -25,7 +25,7 @@ public class EmployeeErrors extends Error {
       new ErrorBody(
         "UE-002", 
         "This cpf already in use", 
-        "entityCreationFailed"
+        "EmployeeCreationFailed"
         )
       );
   }
@@ -36,7 +36,7 @@ public class EmployeeErrors extends Error {
       new ErrorBody(
         "UE-003", 
         "This registration already in use", 
-        "entityCreationFailed"
+        "EmployeeCreationFailed"
         )
       );
   }
@@ -48,6 +48,17 @@ public class EmployeeErrors extends Error {
       "UE-004", 
       "Error during getting employees, please try again later",
       "EmployeeListFailed"
+      )
+    );
+  }
+
+  public static EmployeeErrors employeeNotFoundError() {
+    return new EmployeeErrors(
+      404, 
+      new ErrorBody(
+        "UE-005", 
+        "Employee not found on database", 
+        "EmployeeNotFoundError"
       )
     );
   }
