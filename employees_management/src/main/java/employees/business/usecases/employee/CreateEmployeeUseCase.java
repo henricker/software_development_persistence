@@ -24,6 +24,17 @@ public class CreateEmployeeUseCase implements IUseCaseContract<CreateEmployeeInp
     if(registrationExists)
       throw EmployeeErrors.registrationAlreadyExistsError();
 
+
+    this.employeeRepository.create(
+      new Employee(
+        data.getCpf(),
+        data.getRegistration(),
+        data.getName(),
+        data.getEmail(),
+        data.getPhone()
+      )
+    );
+      
     return null;
   }
 }
