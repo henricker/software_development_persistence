@@ -4,7 +4,6 @@ import employees.business.dto.employee.CreateEmployeeInputDTO;
 import employees.business.module.errors.employee.EmployeeErrors;
 import employees.business.repositories.IEmployeeRepository;
 import employees.business.usecases.IUseCaseContract;
-import employees.domain.entities.Employee;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -25,15 +24,7 @@ public class CreateEmployeeUseCase implements IUseCaseContract<CreateEmployeeInp
       throw EmployeeErrors.registrationAlreadyExistsError();
 
 
-    this.employeeRepository.create(
-      new Employee(
-        data.getCpf(),
-        data.getRegistration(),
-        data.getName(),
-        data.getEmail(),
-        data.getPhone()
-      )
-    );
+    this.employeeRepository.create(data.map());
       
     return null;
   }

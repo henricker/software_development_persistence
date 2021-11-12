@@ -1,5 +1,6 @@
 package employees.business.dto.employee;
 
+import employees.domain.entities.Employee;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
@@ -11,10 +12,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BaseEmployee {
-  public String id;
-  @NonNull public String cpf;
-  @NonNull public String registration;
-  @NonNull public String name;
-  @NonNull public String email;
+  private String id;
+  @NonNull private String cpf;
+  @NonNull private String registration;
+  @NonNull private String name;
+  @NonNull private String email;
   @NonNull String phone;
+
+  public Employee map() {
+    return new Employee(this.id, this.cpf, this.registration, this.name, this.email, this.phone);
+  }
 }
