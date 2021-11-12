@@ -34,10 +34,21 @@ public class EmployeeErrors extends Error {
     return new EmployeeErrors(
       400, 
       new ErrorBody(
-        "UE-002", 
+        "UE-003", 
         "This registration already in use", 
         "entityCreationFailed"
         )
       );
+  }
+
+  public static EmployeeErrors employeeListError() {
+    return new EmployeeErrors(
+      400
+    , new ErrorBody(
+      "UE-004", 
+      "Error during getting employees, please try again later",
+      "EmployeeListFailed"
+      )
+    );
   }
 }
