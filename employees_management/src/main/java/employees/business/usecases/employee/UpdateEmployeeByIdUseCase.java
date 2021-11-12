@@ -22,6 +22,11 @@ public class UpdateEmployeeByIdUseCase implements IUseCaseContract<UpdateEmploye
     if(cpfExists)
       throw EmployeeErrors.cpfAlreadyExistsError();
 
+    Boolean registrationExists = this.repository.findBy("registration", "valid_registration") != null;
+    
+    if(registrationExists)
+      throw EmployeeErrors.registrationAlreadyExistsError();
+    
     return null;
   }
 
