@@ -4,6 +4,7 @@ import employees.business.dto.employee.UpdateEmployeeInputDTO;
 import employees.business.module.errors.employee.EmployeeErrors;
 import employees.business.repositories.IEmployeeRepository;
 import employees.business.usecases.IUseCaseContract;
+import employees.domain.entities.Employee;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -27,6 +28,17 @@ public class UpdateEmployeeByIdUseCase implements IUseCaseContract<UpdateEmploye
     if(registrationExists)
       throw EmployeeErrors.registrationAlreadyExistsError();
     
+    Employee employee = new Employee(
+      data.getId(),
+      data.getCpf(),
+      data.getRegistration(),
+      data.getName(),
+      data.getEmail(),
+      data.getPhone()
+    );
+
+    this.repository.updateBy("id", data.getId(), employee);
+
     return null;
   }
 
