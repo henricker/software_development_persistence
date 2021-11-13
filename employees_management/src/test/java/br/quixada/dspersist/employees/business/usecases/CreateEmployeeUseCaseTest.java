@@ -8,10 +8,12 @@ import org.mockito.Mockito;
 import br.quixada.dspersist.employees.business.dto.employee.CreateEmployeeInputDTO;
 import br.quixada.dspersist.employees.business.module.errors.employee.EmployeeErrors;
 import br.quixada.dspersist.employees.business.repositories.IEmployeeRepository;
+import br.quixada.dspersist.employees.business.services.uniqueIndentifier.IUniqueIndentifier;
 import br.quixada.dspersist.employees.business.usecases.employee.CreateEmployeeUseCase;
 import br.quixada.dspersist.employees.domain.entities.Employee;
 import br.quixada.dspersist.employees.mocks.dto.employee.FakeEmployeeDTOFactory;
 import br.quixada.dspersist.employees.mocks.repositories.FakeEmployeeRepository;
+import br.quixada.dspersist.employees.mocks.services.FakeUniqueIndentifier;
 
 
 public class CreateEmployeeUseCaseTest {
@@ -20,9 +22,10 @@ public class CreateEmployeeUseCaseTest {
   @Test
   public void shouldCallFindbyMethodOfRepositoryWithCPFandValueCPF() {
       IEmployeeRepository repo = Mockito.spy(new FakeEmployeeRepository());
+      IUniqueIndentifier uuidService = Mockito.spy(new FakeUniqueIndentifier());
       when(repo.findBy("cpf", "valid_cpf")).thenReturn(null);
       when(repo.findBy("registration", "valid_registration")).thenReturn(null);
-      CreateEmployeeUseCase useCase = new CreateEmployeeUseCase(repo);
+      CreateEmployeeUseCase useCase = new CreateEmployeeUseCase(repo, uuidService);
   
       useCase.exec(FakeEmployeeDTOFactory.createEmployeeInput());
   
@@ -32,9 +35,10 @@ public class CreateEmployeeUseCaseTest {
   @Test
   public void shouldCallFindbyMethodOfRepositoryWithRegistrationandValueRegistration() {
       IEmployeeRepository repo = Mockito.spy(new FakeEmployeeRepository());
+      IUniqueIndentifier uuidService = Mockito.spy(new FakeUniqueIndentifier());
       when(repo.findBy("cpf", "valid_cpf")).thenReturn(null);
       when(repo.findBy("registration", "valid_registration")).thenReturn(null);
-      CreateEmployeeUseCase useCase = new CreateEmployeeUseCase(repo);
+      CreateEmployeeUseCase useCase = new CreateEmployeeUseCase(repo, uuidService);
   
       useCase.exec(FakeEmployeeDTOFactory.createEmployeeInput());
   
@@ -44,7 +48,8 @@ public class CreateEmployeeUseCaseTest {
   @Test(expected = EmployeeErrors.class)
   public void shouldThrowsIfCpfAlreadyInUse() {
     IEmployeeRepository repo = Mockito.spy(new FakeEmployeeRepository());
-    CreateEmployeeUseCase useCase = new CreateEmployeeUseCase(repo);
+    IUniqueIndentifier uuidService = Mockito.spy(new FakeUniqueIndentifier());
+    CreateEmployeeUseCase useCase = new CreateEmployeeUseCase(repo, uuidService);
 
     useCase.exec(FakeEmployeeDTOFactory.createEmployeeInput());
   }
@@ -52,8 +57,9 @@ public class CreateEmployeeUseCaseTest {
   @Test(expected = EmployeeErrors.class)
   public void shouldThrowsIfRegistrationAlreadyInUse() {
     IEmployeeRepository repo = Mockito.spy(new FakeEmployeeRepository());
+    IUniqueIndentifier uuidService = Mockito.spy(new FakeUniqueIndentifier());
     when(repo.findBy("cpf", "valid_cpf")).thenReturn(null);
-    CreateEmployeeUseCase useCase = new CreateEmployeeUseCase(repo);
+    CreateEmployeeUseCase useCase = new CreateEmployeeUseCase(repo, uuidService);
 
     useCase.exec(FakeEmployeeDTOFactory.createEmployeeInput());
   }
@@ -61,9 +67,10 @@ public class CreateEmployeeUseCaseTest {
   @Test
   public void shouldCallCreateMethodOfRepositoryWithCorrectValues() {
     IEmployeeRepository repo = Mockito.spy(new FakeEmployeeRepository());
+    IUniqueIndentifier uuidService = Mockito.spy(new FakeUniqueIndentifier());
     when(repo.findBy("cpf", "valid_cpf")).thenReturn(null);
     when(repo.findBy("registration", "valid_registration")).thenReturn(null);
-    CreateEmployeeUseCase useCase = new CreateEmployeeUseCase(repo);
+    CreateEmployeeUseCase useCase = new CreateEmployeeUseCase(repo, uuidService);
 
     CreateEmployeeInputDTO inputCreateEmployee = FakeEmployeeDTOFactory.createEmployeeInput();
     useCase.exec(inputCreateEmployee);
@@ -80,9 +87,23 @@ public class CreateEmployeeUseCaseTest {
   @Test(expected = EmployeeErrors.class)
   public void shouldThrowErrorIfRepositoryThrows() {
       IEmployeeRepository repo = Mockito.spy(new FakeEmployeeRepository());
+      IUniqueIndentifier uuidService = Mockito.spy(new FakeUniqueIndentifier());
       when(repo.findBy("cpf", "valid_cpf")).thenThrow(EmployeeErrors.employeeCreationError());
-      CreateEmployeeUseCase useCase = new CreateEmployeeUseCase(repo);
-  
+      CreateEmployeeUseCase useCase = new CreateEmployeeUseCase(repo, uuidService);
+
       useCase.exec(FakeEmployeeDTOFactory.createEmployeeInput());
+  }
+
+  @Test
+  public void shouldCallsUniqueIndentifierService() {
+    IEmployeeRepository repo = Mockito.spy(new FakeEmployeeRepository());
+    IUniqueIndentifier uuidService = Mockito.spy(new FakeUniqueIndentifier());
+    when(repo.findBy("cpf", "valid_cpf")).thenReturn(null);
+    when(repo.findBy("registration", "valid_registration")).thenReturn(null);
+    CreateEmployeeUseCase useCase = new CreateEmployeeUseCase(repo, uuidService);
+
+    useCase.exec(FakeEmployeeDTOFactory.createEmployeeInput());
+
+    Mockito.verify(uuidService).create();  
   }
 }
