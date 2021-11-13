@@ -9,4 +9,4 @@
 **/**/.project
 **/**/config.yml
 **/**/config.properties
-
+**/**/.env
