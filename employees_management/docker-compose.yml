@@ -1,1 +1,15 @@
 version: '3'
+
+services: 
+  db:
+    container_name: api_db
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment: 
+      POSTGRES_PASSWORD: employee_management
+      POSTGRES_USER: employee_management
+      POSTGRES_DB: employee_management
+    volumes:
+      - ./src/main/java/employees/data/postgres/postgres-data:/var/lib/postgresql/data
