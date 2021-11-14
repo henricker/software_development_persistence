@@ -1,8 +1,8 @@
 package br.quixada.dspersist.employees.mocks.dto.employee;
 
-import br.quixada.dspersist.employees.business.dto.employee.CreateEmployeeInputDTO;
-import br.quixada.dspersist.employees.business.dto.employee.ListEmployeeInputDTO;
-import br.quixada.dspersist.employees.business.dto.employee.UpdateEmployeeInputDTO;
+import br.quixada.dspersist.employees.domain.business.dto.employee.CreateEmployeeInputDTO;
+import br.quixada.dspersist.employees.domain.business.dto.employee.ListEmployeeInputDTO;
+import br.quixada.dspersist.employees.domain.business.dto.employee.UpdateEmployeeInputDTO;
 
 public class FakeEmployeeDTOFactory {
 

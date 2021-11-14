@@ -5,11 +5,11 @@ import static org.mockito.Mockito.when;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import br.quixada.dspersist.employees.business.dto.employee.CreateEmployeeInputDTO;
-import br.quixada.dspersist.employees.business.module.errors.employee.EmployeeErrors;
-import br.quixada.dspersist.employees.business.repositories.IEmployeeRepository;
-import br.quixada.dspersist.employees.business.services.uniqueIndentifier.IUniqueIndentifier;
-import br.quixada.dspersist.employees.business.usecases.employee.CreateEmployeeUseCase;
+import br.quixada.dspersist.employees.domain.business.dto.employee.CreateEmployeeInputDTO;
+import br.quixada.dspersist.employees.domain.business.module.errors.employee.EmployeeErrors;
+import br.quixada.dspersist.employees.domain.business.repositories.IEmployeeRepository;
+import br.quixada.dspersist.employees.domain.business.services.uniqueIndentifier.IUniqueIndentifier;
+import br.quixada.dspersist.employees.domain.business.usecases.employee.CreateEmployeeUseCase;
 import br.quixada.dspersist.employees.domain.entities.Employee;
 import br.quixada.dspersist.employees.mocks.dto.employee.FakeEmployeeDTOFactory;
 import br.quixada.dspersist.employees.mocks.repositories.FakeEmployeeRepository;
@@ -76,6 +76,7 @@ public class CreateEmployeeUseCaseTest {
     useCase.exec(inputCreateEmployee);
 
     Mockito.verify(repo).create(new Employee(
+      uuidService.create(),  
       inputCreateEmployee.getCpf(),
       inputCreateEmployee.getRegistration(),
       inputCreateEmployee.getName(),

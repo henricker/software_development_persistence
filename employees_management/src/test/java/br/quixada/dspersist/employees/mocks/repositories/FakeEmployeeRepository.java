@@ -3,7 +3,7 @@ package br.quixada.dspersist.employees.mocks.repositories;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.quixada.dspersist.employees.business.repositories.IEmployeeRepository;
+import br.quixada.dspersist.employees.domain.business.repositories.IEmployeeRepository;
 import br.quixada.dspersist.employees.domain.entities.Employee;
 
 public class FakeEmployeeRepository implements IEmployeeRepository {

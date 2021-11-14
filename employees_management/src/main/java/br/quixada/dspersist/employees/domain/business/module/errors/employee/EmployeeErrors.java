@@ -1,4 +1,4 @@
-package br.quixada.dspersist.employees.business.module.errors.employee;
+package br.quixada.dspersist.employees.domain.business.module.errors.employee;
 
 import br.quixada.dspersist.employees.shared.Error.Error;
 import br.quixada.dspersist.employees.shared.Error.ErrorBody;

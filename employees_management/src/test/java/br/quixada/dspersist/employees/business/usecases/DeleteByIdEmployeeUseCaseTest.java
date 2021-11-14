@@ -5,9 +5,9 @@ import static org.mockito.Mockito.when;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import br.quixada.dspersist.employees.business.module.errors.employee.EmployeeErrors;
-import br.quixada.dspersist.employees.business.repositories.IEmployeeRepository;
-import br.quixada.dspersist.employees.business.usecases.employee.DeleteByIdEmployeeUseCase;
+import br.quixada.dspersist.employees.domain.business.module.errors.employee.EmployeeErrors;
+import br.quixada.dspersist.employees.domain.business.repositories.IEmployeeRepository;
+import br.quixada.dspersist.employees.domain.business.usecases.employee.DeleteByIdEmployeeUseCase;
 import br.quixada.dspersist.employees.mocks.repositories.FakeEmployeeRepository;
 
 public class DeleteByIdEmployeeUseCaseTest {

@@ -3,9 +3,9 @@ package br.quixada.dspersist.employees;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import br.quixada.dspersist.employees.business.module.errors.employee.EmployeeErrors;
 import br.quixada.dspersist.employees.data.postgres.connection.ConnectionFactory;
 import br.quixada.dspersist.employees.data.postgres.repositories.EmployeeRepositoryJDBCPostgres;
+import br.quixada.dspersist.employees.domain.business.module.errors.employee.EmployeeErrors;
 import br.quixada.dspersist.employees.domain.entities.Employee;
 
 public class App {

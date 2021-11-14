@@ -1,4 +1,4 @@
-package br.quixada.dspersist.employees.business.dto.employee;
+package br.quixada.dspersist.employees.domain.business.dto.employee;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import br.quixada.dspersist.employees.business.module.errors.employee.EmployeeErrors;
-import br.quixada.dspersist.employees.business.repositories.IEmployeeRepository;
+import br.quixada.dspersist.employees.domain.business.module.errors.employee.EmployeeErrors;
+import br.quixada.dspersist.employees.domain.business.repositories.IEmployeeRepository;
 import br.quixada.dspersist.employees.domain.entities.Employee;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

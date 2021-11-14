@@ -1,4 +1,4 @@
-package br.quixada.dspersist.employees.business.repositories;
+package br.quixada.dspersist.employees.domain.business.repositories;
 
 import java.util.List;
 

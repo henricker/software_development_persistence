@@ -1,9 +1,9 @@
-package br.quixada.dspersist.employees.business.usecases.employee;
+package br.quixada.dspersist.employees.domain.business.usecases.employee;
 
-import br.quixada.dspersist.employees.business.dto.employee.UpdateEmployeeInputDTO;
-import br.quixada.dspersist.employees.business.module.errors.employee.EmployeeErrors;
-import br.quixada.dspersist.employees.business.repositories.IEmployeeRepository;
-import br.quixada.dspersist.employees.business.usecases.IUseCaseContract;
+import br.quixada.dspersist.employees.domain.business.dto.employee.UpdateEmployeeInputDTO;
+import br.quixada.dspersist.employees.domain.business.module.errors.employee.EmployeeErrors;
+import br.quixada.dspersist.employees.domain.business.repositories.IEmployeeRepository;
+import br.quixada.dspersist.employees.domain.business.usecases.IUseCaseContract;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
