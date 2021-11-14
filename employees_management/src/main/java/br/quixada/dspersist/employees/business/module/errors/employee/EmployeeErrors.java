@@ -62,4 +62,37 @@ public class EmployeeErrors extends Error {
       )
     );
   }
+
+  public static EmployeeErrors employeeFindError() {
+    return new EmployeeErrors(
+      404, 
+      new ErrorBody(
+        "UE-006", 
+        "Error to search employee, please try again later", 
+        "EmployeeFindError"
+      )
+    );
+  }
+
+  public static EmployeeErrors employeeDeleteError() {
+    return new EmployeeErrors(
+      404, 
+      new ErrorBody(
+        "UE-007", 
+        "Error to delete employee, please try again later", 
+        "EmployeeDeleteError"
+      )
+    );
+  }
+
+  public static EmployeeErrors employeeUpdateError() {
+    return new EmployeeErrors(
+      404, 
+      new ErrorBody(
+        "UE-007", 
+        "Error to update employee, please try again later", 
+        "EmployeeUpdateError"
+      )
+    );
+  }
 }

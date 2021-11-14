@@ -12,4 +12,4 @@ services:
       POSTGRES_USER: employee_management
       POSTGRES_DB: employee_management
     volumes:
-      - ./src/main/java/employees/data/postgres/postgres-data:/var/lib/postgresql/data
+      - ./src/main/java/br/quixada/dspersist/employees/data/postgres/postgres-data:/var/lib/postgresql/data
