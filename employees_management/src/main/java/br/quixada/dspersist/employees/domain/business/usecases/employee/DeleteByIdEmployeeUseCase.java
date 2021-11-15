@@ -12,7 +12,7 @@ public class DeleteByIdEmployeeUseCase implements IUseCaseContract<String, Void>
 
   @Override
   public Void exec(String id) {
-    Boolean employeeExists = this.repository.findBy("id", id) != null ? true : false;
+    Boolean employeeExists = this.repository.findBy("id", id) != null;
 
     if(!employeeExists)
       throw EmployeeErrors.employeeNotFoundError();
