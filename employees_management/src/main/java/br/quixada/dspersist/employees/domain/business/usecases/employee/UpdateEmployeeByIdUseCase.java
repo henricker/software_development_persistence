@@ -4,6 +4,7 @@ import br.quixada.dspersist.employees.domain.business.dto.employee.UpdateEmploye
 import br.quixada.dspersist.employees.domain.business.module.errors.employee.EmployeeErrors;
 import br.quixada.dspersist.employees.domain.business.repositories.IEmployeeRepository;
 import br.quixada.dspersist.employees.domain.business.usecases.IUseCaseContract;
+import br.quixada.dspersist.employees.domain.entities.Employee;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -17,14 +18,16 @@ public class UpdateEmployeeByIdUseCase implements IUseCaseContract<UpdateEmploye
     if(!employeeExists)
       throw EmployeeErrors.employeeNotFoundError();
 
-    Boolean cpfExists = this.repository.findBy("cpf", data.getCpf()) != null;
+    Employee employeeByCpf = this.repository.findBy("cpf", data.getCpf());
+    Boolean cpfExists = employeeByCpf == null;
 
-    if(cpfExists)
+    if(cpfExists && !(employeeByCpf.getId().equals(data.getId())))
       throw EmployeeErrors.cpfAlreadyExistsError();
 
-    Boolean registrationExists = this.repository.findBy("registration", "valid_registration") != null;
+    Employee employeeByRegistration = this.repository.findBy("registration", data.getRegistration());
+    Boolean registrationExists = employeeByRegistration != null;
     
-    if(registrationExists)
+    if(registrationExists && !(employeeByRegistration.getId().equals(data.getId())))
       throw EmployeeErrors.registrationAlreadyExistsError();
     
     this.repository.updateBy("id", data.getId(), data.map());
