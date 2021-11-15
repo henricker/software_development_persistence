@@ -120,16 +120,20 @@ public class EmployeeRepositoryJDBCPostgres implements IEmployeeRepository {
 
   @Override
   public void deleteBy(String uniqueKey, Object value) {
-    String sql = "DELETE FROM employees WHERE ? = ?";
-    try(PreparedStatement ps = this.connection.prepareStatement(sql)){
-      ps.setString(1, uniqueKey);
+  
+    try{
+      if(!this.acceptUniqueKeys.contains(uniqueKey))
+        throw new SQLException();
+
+      String sql = "DELETE FROM employees WHERE " + uniqueKey + " = ?";
+      PreparedStatement ps = this.connection.prepareStatement(sql);
 
       if (value instanceof String)
-        ps.setString(2, String.valueOf(value));
+        ps.setString(1, String.valueOf(value));
       else if(value instanceof Integer)
-        ps.setInt(2, Integer.valueOf(String.valueOf(value)));
+        ps.setInt(1, Integer.valueOf(String.valueOf(value)));
       else if(value instanceof Long)
-        ps.setLong(5, Long.valueOf(String.valueOf(value)));
+        ps.setLong(1, Long.valueOf(String.valueOf(value)));
       else  
         throw new SQLException();
 
