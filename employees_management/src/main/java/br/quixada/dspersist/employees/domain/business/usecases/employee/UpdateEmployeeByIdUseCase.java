@@ -19,7 +19,7 @@ public class UpdateEmployeeByIdUseCase implements IUseCaseContract<UpdateEmploye
       throw EmployeeErrors.employeeNotFoundError();
 
     Employee employeeByCpf = this.repository.findBy("cpf", data.getCpf());
-    Boolean cpfExists = employeeByCpf == null;
+    Boolean cpfExists = employeeByCpf != null;
 
     if(cpfExists && !(employeeByCpf.getId().equals(data.getId())))
       throw EmployeeErrors.cpfAlreadyExistsError();
