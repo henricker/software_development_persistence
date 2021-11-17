@@ -63,5 +63,34 @@ Cada funcionário deve ter um id, cpf, matrícula, nome, email e telefone.
   - Adicione o seu login, senha e url em:
     - src/main/resources/config.properties
 
+  - Código da tabela de employees
+  
+  ![](src/main/resources/github-docs/employeeTable.png)
 
 - Após isso, basta rodar a classe App.java!
+
+## Preview das funcionalidades
+
+### Menu principal
+![](src/main/resources/github-docs/menu.png)
+
+### Criar funcionário
+
+![](src/main/resources/github-docs/features/create.png)
+![](src/main/resources/github-docs/features/createDatabase.png)
+
+### Listar funcionário ( com paginação )
+
+![](src/main/resources/github-docs/features/listAll.png)
+
+### Atualizar funcionário
+
+![](src/main/resources/github-docs/features/update.png)
+![](src/main/resources/github-docs/features/database.png)
+
+### Deletar funcionário
+
+![](src/main/resources/github-docs/features/delete.png)
+![](src/main/resources/github-docs/features/deleteDatabase.png)
+
+
