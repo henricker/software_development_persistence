@@ -14,6 +14,7 @@ import br.com.quixada.dspersist.employees.main.ui.tui.options.UpdateEmployeeTUI;
 import br.com.quixada.dspersist.employees.main.ui.tui.options.FindAllEmployeeTUI;
 import br.com.quixada.dspersist.employees.main.ui.tui.util.TUIUtil;
 import br.com.quixada.dspersist.employees.shared.error.BusinessException;
+import br.com.quixada.dspersist.employees.shared.error.ServerException;
 import br.com.quixada.dspersist.employees.shared.error.ValidationException;
 
 @Service
@@ -99,6 +100,12 @@ public class MainTUI {
     } catch(ValidationException ve) {
       TUIUtil.clearScreen();
       System.out.println(ve.getBodyError());
+      System.out.println("Digite qualquer tecla para continuar: ");
+      scanner.next();
+      run(scanner);
+    } catch(Exception err) {
+      TUIUtil.clearScreen();
+      System.out.println(new ServerException("Oops!, Ocorreu um erro no servidor!").getBodyError());
       System.out.println("Digite qualquer tecla para continuar: ");
       scanner.next();
       run(scanner);
