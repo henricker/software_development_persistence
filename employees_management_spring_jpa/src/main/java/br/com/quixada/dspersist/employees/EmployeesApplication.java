@@ -1,5 +1,6 @@
 package br.com.quixada.dspersist.employees;
 
+
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,8 @@ public class EmployeesApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		Scanner scanner = new Scanner(System.in);
-		mainTUI.run(scanner);
+		this.mainTUI.run(scanner);
+		scanner.close();
 	}
 
 }
