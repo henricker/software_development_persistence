@@ -66,6 +66,9 @@ public class EmployeeRepositoryJPAPostgres implements IEmployeeRepository {
 
   @Override
   public void deleteBy(String uniqueKey, Object value) {
+    if(!this.uniqueKeys.contains(uniqueKey))
+      throw new RuntimeException("Invalid unique key!");
+    
     EntityManager em = JPAUtil.getEntityManager();
     try {
       CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -84,6 +87,9 @@ public class EmployeeRepositoryJPAPostgres implements IEmployeeRepository {
 
   @Override
   public void updateBy(String uniqueKey, Object valueUniqueKey, Employee employee) {
+    if(!this.uniqueKeys.contains(uniqueKey))
+      throw new RuntimeException("Invalid unique key!");
+
     EntityManager em = JPAUtil.getEntityManager();
     try {
       CriteriaBuilder cb = em.getCriteriaBuilder();
