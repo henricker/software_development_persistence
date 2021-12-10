@@ -1,0 +1,28 @@
+package com.ufc.quixada.dspersist.employees;
+
+import java.util.Scanner;
+
+import com.ufc.quixada.dspersist.employees.main.ui.tui.MainTUI;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class EmployeesApplication implements CommandLineRunner {
+
+	@Autowired
+	private MainTUI mainTUI;
+
+	public static void main(String[] args) {
+		SpringApplication.run(EmployeesApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		Scanner scanner = new Scanner(System.in);
+		this.mainTUI.run(scanner);
+		scanner.close();
+	}
+}
