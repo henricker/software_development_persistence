@@ -1,0 +1,15 @@
+version: '3'
+
+services: 
+  db:
+    container_name: api_db
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment: 
+      POSTGRES_PASSWORD: school-management
+      POSTGRES_USER: school-management
+      POSTGRES_DB: school-management
+    volumes:
+      - ./src/main/java/br/com/quixada/dspersist/employees/data/postgres/postgres-data:/var/lib/postgresql/data
