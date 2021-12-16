@@ -6,9 +6,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -52,6 +55,11 @@ public class Student {
   @NonNull
   private LocalDate bornDate;
 
-  @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-  private List<StudentCourse> studentCourses;
+  @ManyToMany
+  @JoinTable(
+    name = "students_courses",
+    joinColumns = @JoinColumn( name = "student_id"),
+    inverseJoinColumns = @JoinColumn(name = "course_id")
+  )
+  private List<Course> courses;
 }
