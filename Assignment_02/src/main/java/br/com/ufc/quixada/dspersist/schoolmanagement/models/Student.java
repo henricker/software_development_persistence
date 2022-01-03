@@ -5,12 +5,12 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -29,6 +29,16 @@ import lombok.ToString;
 @Getter
 @Setter
 public class Student {
+
+  public Student(Long id, String cpf, String registration, String email, String name, LocalDate bornDate) {
+    this.id = id;
+    this.cpf = cpf;
+    this.registration = registration;
+    this.email = email;
+    this.name = name;
+    this.bornDate = bornDate;
+  }
+
   @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id;
   
   @Column(unique = true)
@@ -50,12 +60,8 @@ public class Student {
   @Column(name = "born_date")
   @NonNull
   private LocalDate bornDate;
-
-  @ManyToMany
-  @JoinTable(
-    name = "students_courses",
-    joinColumns = @JoinColumn( name = "student_id"),
-    inverseJoinColumns = @JoinColumn(name = "course_id")
-  )
-  private List<Course> courses;
+  
+  @ToString.Exclude
+  @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
+  private List<StudentCourse> studentCourses;
 }

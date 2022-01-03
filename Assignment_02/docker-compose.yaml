@@ -12,4 +12,4 @@ services:
       POSTGRES_USER: school-management
       POSTGRES_DB: school-management
     volumes:
-      - ./src/main/java/br/com/quixada/dspersist/employees/data/postgres/postgres-data:/var/lib/postgresql/data
+      - ./src/main/java/br/com/ufc/quixada/dspersist/schoolmanagement/repositories/postgres_data:/var/lib/postgresql/data

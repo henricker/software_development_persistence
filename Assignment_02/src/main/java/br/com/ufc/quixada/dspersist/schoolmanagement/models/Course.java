@@ -4,12 +4,11 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -21,15 +20,21 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@ToString
 @AllArgsConstructor
 @RequiredArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
 @Getter
 @Setter
+@EqualsAndHashCode
+@ToString
 public class Course {
-  
+
+  public Course(Long id, String code, String name) {
+    this.id = id;
+    this.code = code;
+    this.name = name;
+  }
+
   @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id;
   
   @Column(unique = true)
@@ -40,11 +45,7 @@ public class Course {
   @NonNull
   private String name;
 
-  @ManyToMany
-  @JoinTable(
-    name = "students_courses",
-    joinColumns = @JoinColumn(name = "course_id"),
-    inverseJoinColumns = @JoinColumn(name = "student_id")
-  )
-  private List<Student> students;
+  @ToString.Exclude
+  @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
+  private List<StudentCourse> studentCourses;
 }
