@@ -62,6 +62,6 @@ public class Student {
   private LocalDate bornDate;
   
   @ToString.Exclude
-  @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
   private List<StudentCourse> studentCourses;
 }

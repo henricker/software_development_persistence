@@ -46,6 +46,6 @@ public class Course {
   private String name;
 
   @ToString.Exclude
-  @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
   private List<StudentCourse> studentCourses;
 }

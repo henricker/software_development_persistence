@@ -5,6 +5,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import br.com.ufc.quixada.dspersist.schoolmanagement.dto.student.searchOptions.IFindNameOfStudentWithCourses;
+import br.com.ufc.quixada.dspersist.schoolmanagement.models.StudentCourse;
 import br.com.ufc.quixada.dspersist.schoolmanagement.repositories.CourseRepository;
 import br.com.ufc.quixada.dspersist.schoolmanagement.repositories.StudentCourseRepository;
 import br.com.ufc.quixada.dspersist.schoolmanagement.repositories.StudentRepository;
@@ -36,13 +38,14 @@ public class SchoolManagementApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
-		this.studentRepository.findNameAndCoursesOfStudent().forEach((e) -> {
-			System.out.println(e.getName());
-			e.getCourses().forEach((c) -> {
-				System.out.println("----" + c.getId());
+		this.studentRepository.findNameAndCoursesOfStudent("H").forEach((IFindNameOfStudentWithCourses s) -> {
+			System.out.println(s.getName());
+			s.getStudentCourses().forEach((StudentCourse sc) -> {
+				System.out.println("Course: " + sc.getCourse().getName());
 			});
 		});
+
+		//System.out.println(this.studentRepository.findStudentsNameAndQuantityOfCourses());
 		
 	}
 
