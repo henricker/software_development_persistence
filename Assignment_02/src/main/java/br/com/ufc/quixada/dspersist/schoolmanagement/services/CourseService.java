@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.ufc.quixada.dspersist.schoolmanagement.dto.course.CreateCourseDTO;
 import br.com.ufc.quixada.dspersist.schoolmanagement.dto.course.UpdateCourseDTO;
+import br.com.ufc.quixada.dspersist.schoolmanagement.exceptions.CourseException;
 import br.com.ufc.quixada.dspersist.schoolmanagement.models.Course;
 import br.com.ufc.quixada.dspersist.schoolmanagement.repositories.CourseRepository;
 
@@ -21,7 +22,7 @@ public class CourseService {
     Boolean codeExists = this.repository.findByCode(dto.getCode()).isPresent();
 
     if(Boolean.TRUE.equals(codeExists))
-      throw new RuntimeException("Código já está em uso");
+      throw CourseException.codeAlreadyExistsError();
 
     this.repository.save(dto.export());
   }
@@ -33,7 +34,7 @@ public class CourseService {
   public void delete(Long courseId) {
 
     if(!this.repository.findById(courseId).isPresent())
-      throw new RuntimeException("Estudante não encontrado");
+      throw CourseException.courseNotFoundError();
 
     this.repository.deleteById(courseId);
   }
@@ -42,12 +43,12 @@ public class CourseService {
     Optional<Course> courseExists = this.repository.findById(dto.getId());
 
     if(!courseExists.isPresent())
-      throw new RuntimeException("Estudante não encontrado");
+      throw CourseException.courseNotFoundError();
       
     Optional<Course> codeExists = this.repository.findByCode(dto.getCode());
 
     if(Boolean.TRUE.equals(codeExists.isPresent()) && !codeExists.get().getId().equals(dto.getId()))
-      throw new RuntimeException("email já está em uso");
+      throw CourseException.codeAlreadyExistsError();
 
     this.repository.save(dto.export());
   } 
