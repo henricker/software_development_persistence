@@ -5,6 +5,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.ufc.quixada.dspersist.schoolmanagement.exceptions.CourseException;
+import br.com.ufc.quixada.dspersist.schoolmanagement.exceptions.StudentException;
 import br.com.ufc.quixada.dspersist.schoolmanagement.models.Course;
 import br.com.ufc.quixada.dspersist.schoolmanagement.models.Student;
 import br.com.ufc.quixada.dspersist.schoolmanagement.models.StudentCourse;
@@ -26,40 +28,37 @@ public class StudentCourseService {
   
     Optional<Student> studentOptional = this.studentRepository.findById(studentId);
 
-    if(!studentOptional.isPresent())
-      throw new RuntimeException("Estudante não encontrado");
+    if(studentOptional.isEmpty())
+      throw StudentException.studentNotFoundError();
 
     Optional<Course> courseOptional = this.courseRepository.findById(courseId);
 
-    if(!courseOptional.isPresent())
-      throw new RuntimeException("Disciplina não encontrada");
+    if(courseOptional.isEmpty())
+      throw CourseException.courseNotFoundError();
 
-    Student student = studentOptional.get();
-    Course course = courseOptional.get();
+    Optional<StudentCourse> hasEnroll = this.studentCourseRepository.findByStudentAndCourse(studentId, courseId);
 
-    StudentCourse sc = new StudentCourse(studentId, courseId);
-
-    if(student.getStudentCourses().contains(sc))
-      throw new RuntimeException("Estudante já está matriculado nessa discplina");
+    if(hasEnroll.isPresent()) 
+      throw CourseException.studentAlreadyEnrolledError();
     
-    this.studentCourseRepository.save(sc);
+    this.studentCourseRepository.save(new StudentCourse(studentId, courseId));
   }
 
   public void unenroll(Long studentId, Long courseId) {
     Optional<Student> studentOptional = this.studentRepository.findById(studentId);
 
     if(!studentOptional.isPresent())
-      throw new RuntimeException("Estudante não encontrado");
+      throw StudentException.studentNotFoundError();
 
     Optional<Course> courseOptional = this.courseRepository.findById(courseId);
 
     if(!courseOptional.isPresent())
-      throw new RuntimeException("Disciplina não encontrada");
+      throw CourseException.courseNotFoundError();
 
     Optional<StudentCourse> sc = this.studentCourseRepository.findByStudentAndCourse(studentId, courseId);
 
     if(!sc.isPresent())
-      throw new RuntimeException("Estudante não matriculado");
+      throw CourseException.studentNotEnrolledError();
 
     this.studentCourseRepository.deleteById(sc.get().getId());
   }

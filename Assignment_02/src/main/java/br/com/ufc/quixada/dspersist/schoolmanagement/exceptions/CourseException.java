@@ -10,7 +10,7 @@ public class CourseException extends BusinessException {
     return new CourseException(
       404, 
       "CourseNotFoundError", 
-      "Curso não encontrado"
+      "Disciplina não encontrada"
     ); 
   }
 
@@ -19,6 +19,22 @@ public class CourseException extends BusinessException {
       400, 
       "CodeAlreadyExistsError", 
       "Código do curso já está em uso"
+    );
+  }
+
+  public static BusinessException studentAlreadyEnrolledError() {
+    return new CourseException(
+      400, 
+      "studentAlreadyEnrolledError", 
+      "Estudante já matriculado nessa disciplina"
+    );
+  }
+
+  public static BusinessException studentNotEnrolledError() {
+    return new CourseException(
+      404, 
+      "studentNotEnrolledError", 
+      "Estudante não está matriculado nessa disciplina"
     );
   }
 }
