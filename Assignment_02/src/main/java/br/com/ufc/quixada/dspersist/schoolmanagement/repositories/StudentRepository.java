@@ -17,13 +17,16 @@ import br.com.ufc.quixada.dspersist.schoolmanagement.models.Student;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
   public Optional<Student> findByEmail(String email);
-  public Optional<IStudentIdNameAndEmail> findByRegistration(String registration);
+  
+  @Query("SELECT s.name as name, s.email as email, s.id as id FROM Student s WHERE s.registration = :registration")
+  public Optional<IStudentIdNameAndEmail> findByRegistration(@Param("registration") String registration);
+  
   public Optional<Student> findByCpf(String cpf);
 
-  @Query("SELECT e FROM Student e WHERE e.bornDate >= :bornDate")
+  @Query("SELECT s FROM Student s WHERE s.bornDate >= :bornDate")
   public Set<Student> findByDate(@Param("bornDate") LocalDate bornDate);
 
-  @Query("SELECT e.name as name, COUNT(sc.id) as countOfCourses FROM Student e JOIN e.studentCourses sc GROUP BY e.name")
+  @Query("SELECT s.name as name, COUNT(sc.id) as countOfCourses FROM Student s JOIN s.studentCourses sc GROUP BY s.name")
   public Set<IStudentNameAndCountingCourses> findStudentsNameAndQuantityOfCourses();
 
   @Query("SELECT s FROM Student s JOIN FETCH s.studentCourses sc JOIN FETCH sc.course c WHERE s.name LIKE CONCAT('%',:name,'%')")
