@@ -14,4 +14,7 @@ import org.springframework.data.repository.query.Param;
 public interface StudentCourseRepository extends JpaRepository<StudentCourse, Long>{
   @Query("SELECT sc FROM StudentCourse sc WHERE sc.studentId = :studentId AND sc.courseId = :courseId")
   public Optional<StudentCourse> findByStudentAndCourse(@Param("studentId") Long studentId, @Param("courseId") Long courseId);
+
+  @Query(name = "findByStudentAndCourseId")
+  public Optional<StudentCourse> hasEnroll(@Param("studentId") Long studentId, @Param("courseId") Long courseId);
 }
