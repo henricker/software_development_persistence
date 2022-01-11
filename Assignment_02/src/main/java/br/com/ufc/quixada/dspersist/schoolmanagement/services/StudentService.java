@@ -92,11 +92,15 @@ public class StudentService {
     return this.repository.findByDate(date);
   }
 
-  public Set<IStudentNameAndCountingCourses> findNameAndCountingByStudent() {
+  public Set<IStudentNameAndCountingCourses> findNameAndCountingCourseByStudent() {
     return this.repository.findStudentsNameAndQuantityOfCourses();
   }
 
   public Set<IFindNameOfStudentWithCourses> findNameAndCoursesByStudentNameStartsWith(String name) {
     return this.repository.findNameAndCoursesOfStudent(name);
+  }
+
+  public Set<Student> findStudentsByCodeOfCourse(String code) {
+    return this.repository.findStudentsByCodeOfCourse(code);
   }
 }

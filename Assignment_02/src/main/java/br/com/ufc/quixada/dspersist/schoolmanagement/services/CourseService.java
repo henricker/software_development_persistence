@@ -54,8 +54,4 @@ public class CourseService {
 
     this.repository.save(dto.export());
   }
-
-  public Set<Student> findStudentsByCodeOfCourse(String code) {
-    return this.repository.findStudentsByCodeOfCourse(code);
-  }
 }

@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import br.com.ufc.quixada.dspersist.schoolmanagement.ui.tui.submenus.coursemanagement.CourseManagementTUI;
+import br.com.ufc.quixada.dspersist.schoolmanagement.ui.tui.submenus.reports.ReportTUI;
+import br.com.ufc.quixada.dspersist.schoolmanagement.ui.tui.submenus.studentcoursemanagement.StudentCourseManagementTUI;
 import br.com.ufc.quixada.dspersist.schoolmanagement.ui.tui.submenus.studentmanagement.StudentManagementTUI;
 import br.com.ufc.quixada.dspersist.schoolmanagement.ui.tui.util.TuiUtil;
 
@@ -19,6 +21,12 @@ public class MainViewTui extends GenericTUI {
   private CourseManagementTUI courseManagementTUI;
 
   @Autowired
+  private StudentCourseManagementTUI studentCourseManagementTUI;
+
+  @Autowired
+  private ReportTUI reportTUI;
+
+  @Autowired
   private InvalidOptionTui invalidOptionTui;
 
   @Override
@@ -28,7 +36,7 @@ public class MainViewTui extends GenericTUI {
     menu.append("------ Si3 ------ \n");
     menu.append("1 - Gerenciar Alunos\n");
     menu.append("2 - Gerenciar Disciplinas\n");
-    menu.append("3 - Gerenciar matrículas\n");
+    menu.append("3 - Alunos/Discilinas\n");
     menu.append("4 - Relatórios");
     TuiUtil.clearScreen();
     System.out.println(menu.toString());
@@ -38,6 +46,8 @@ public class MainViewTui extends GenericTUI {
     switch(chooseOption) {
       case 1: return studentManagementTUI;
       case 2: return courseManagementTUI;
+      case 3: return studentCourseManagementTUI;
+      case 4: return reportTUI;
     }
 
     return invalidOptionTui;

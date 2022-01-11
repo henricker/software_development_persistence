@@ -31,4 +31,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
   @Query("SELECT s FROM Student s JOIN FETCH s.studentCourses sc JOIN FETCH sc.course c WHERE s.name LIKE CONCAT('%',:name,'%')")
   public Set<IFindNameOfStudentWithCourses> findNameAndCoursesOfStudent(@Param("name") String name);
+
+  @Query("SELECT s FROM Student s JOIN FETCH s.studentCourses sc JOIN FETCH sc.course c WHERE c.code = :code")
+  public Set<Student> findStudentsByCodeOfCourse(@Param("code") String code);
 }

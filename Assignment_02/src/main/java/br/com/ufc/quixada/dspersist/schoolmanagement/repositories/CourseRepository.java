@@ -15,6 +15,7 @@ import br.com.ufc.quixada.dspersist.schoolmanagement.models.Student;
 public interface CourseRepository extends JpaRepository<Course, Long> {
   public Optional<Course> findByCode(String code);
 
-  @Query("SELECT s FROM Course c JOIN c.studentCourses sc JOIN sc.student s  WHERE c.code = :code")
-  public Set<Student> findStudentsByCodeOfCourse(@Param("code") String code);
+  // @Query("SELECT s FROM Course c JOIN c.studentCourses sc JOIN sc.student s  WHERE c.code = :code")
+  // //@Query("SELECT s FROM Student s JOIN FETCH s.studentCourses sc JOIN FETCH sc.courses c WHERE c.code = :code")
+  // public Set<Student> findStudentsByCodeOfCourse(@Param("code") String code);
 }
