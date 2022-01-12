@@ -2,11 +2,9 @@ package br.com.ufc.quixada.dspersist.schoolmanagement.repositories;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.ufc.quixada.dspersist.schoolmanagement.models.Student;
 import br.com.ufc.quixada.dspersist.schoolmanagement.models.StudentCourse;
 
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
