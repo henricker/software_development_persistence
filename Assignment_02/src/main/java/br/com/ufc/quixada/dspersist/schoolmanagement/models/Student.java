@@ -3,6 +3,7 @@ package br.com.ufc.quixada.dspersist.schoolmanagement.models;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -62,6 +63,6 @@ public class Student {
   private LocalDate bornDate;
   
   @ToString.Exclude
-  @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private List<StudentCourse> studentCourses;
 }

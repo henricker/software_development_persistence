@@ -2,6 +2,7 @@ package br.com.ufc.quixada.dspersist.schoolmanagement.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -46,6 +47,6 @@ public class Course {
   private String name;
 
   @ToString.Exclude
-  @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "course", fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
   private List<StudentCourse> studentCourses;
 }
