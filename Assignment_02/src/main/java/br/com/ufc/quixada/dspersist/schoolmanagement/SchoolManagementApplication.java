@@ -35,7 +35,6 @@ public class SchoolManagementApplication implements CommandLineRunner {
       } catch(Exception e) {
         TuiUtil.clearScreen();
         System.out.println(new ServerException().showMessage());
-        System.out.print(e);
       } finally {
         System.out.println("Ainda deseja continuar? 1 - sim, 0 - não");
         Integer keep = scanner.nextInt();
